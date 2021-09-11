@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model IEnumerable<Lab1.Models.RailwayRoute>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-dark">Routes list</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Route" asp-action="Create" class="btn font-weight-bold text-white bg-dark">
+                Create new route
+            </a>
+        </div>
+    </div>
+    <br /><br />
+
+    @if (Model.Any())
+    {
+        <table class="table table-bordered table-striped" style="width: 100%">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Route name</th>
+                    <th scope="col">Departure time</th>
+                    <th scope="col">Arrival time</th>
+                    <th scope="col">Departure city</th>
+                    <th scope="col">Arrival city</th>
+                    <th scope="col">Buy a ticket</th>
+                    <th scope="col">Delete a route</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <td>@obj.Name</td>
+                    <td>@obj.DepartureTime</td>
+                    <td>@obj.ArrivalTime</td>
+                    <td>@obj.DepartureCity</td>
+                    <td>@obj.ArrivalCity</td>
+                    <td>
+                        <a asp-controller="Ticket" asp-action="Create" asp-route-id="@obj.Id" class="btn btn-dark w-100"></a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No routes exists</p>
+    }
+</div>

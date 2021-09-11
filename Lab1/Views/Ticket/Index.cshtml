@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model IEnumerable<Lab1.Models.RailwayRoute>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Routes list</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                Create new route
+            </a>
+        </div>
+    </div>
+    <br /><br />
+
+    @if (Model.Any())
+    {
+        <table class="table table-bordered table-striped" style="width: 100%">
+            <thead>
+                <tr>
+                    <th scope="col">Route name</th>
+                    <th scope="col">Departure time</th>
+                    <th scope="col">ArrivalTime</th>
+                    <th scope="col">DepartureCity</th>
+                    <th scope="col">ArrivalCity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No routes exists</p>
+    }
+</div>
