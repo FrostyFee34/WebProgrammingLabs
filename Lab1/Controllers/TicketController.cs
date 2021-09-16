@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Lab1.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lab1.Controllers
 {
@@ -12,15 +14,19 @@ namespace Lab1.Controllers
         {
             _db = db;
         }
+
         public IActionResult Index()
         {
-            IEnumerable<Ticket> tickets = _db.Tickets;
+            IEnumerable<Ticket> tickets = _db.Tickets.Include(x => x.Route);
             return View(tickets);
         }
+
         // GET - CREATE
-        public IActionResult Create()
+        public async Task<IActionResult> Create(int railwayRouteId)
         {
-            return View();
+            var route = await _db.Routes.FindAsync(railwayRouteId);
+            var ticket = new Ticket {RailwayRouteId = railwayRouteId, Route = route};
+            return View(ticket);
         }
 
         // POST - CREATE

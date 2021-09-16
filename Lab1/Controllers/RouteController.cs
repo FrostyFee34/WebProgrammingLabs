@@ -40,5 +40,16 @@ namespace Lab1.Controllers
             return RedirectToAction("Index");
         }
        
+        public IActionResult Delete(int? id)
+        {
+            var obj = _db.Routes.Find(id);
+
+            if (obj == null) return RedirectToAction("Index");
+
+            _db.Routes.Remove(obj);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }

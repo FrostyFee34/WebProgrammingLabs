@@ -27,7 +27,6 @@
                     <th scope="col">Departure city</th>
                     <th scope="col">Arrival city</th>
                     <th scope="col">Buy a ticket</th>
-                    <th scope="col">Delete a route</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,8 +38,8 @@
                     <td>@obj.ArrivalTime</td>
                     <td>@obj.DepartureCity</td>
                     <td>@obj.ArrivalCity</td>
-                    <td>
-                        <a asp-controller="Ticket" asp-action="Create" asp-route-id="@obj.Id" class="btn btn-dark w-100"></a>
+                    <td class="btn btn-dark w-100">
+                        <a asp-controller="Ticket" asp-action="Create" asp-route-RailwayRouteId="@obj.Id" class="mx-2 text-light">Buy</a>
                     </td>
                 </tr>
             }
