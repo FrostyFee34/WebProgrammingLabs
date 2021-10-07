@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Lab2.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-dark">Products</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Products" asp-action="Create" class="btn font-weight-bold text-white bg-dark">
+                Add product
+            </a>
+        </div>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-bordered table-striped" style="width: 100%">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Cell</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <td>@obj.Name</td>
+                    <td>@obj.Description</td>
+                    <td>@obj.Price</td>
+                    <td>@obj.WarehouseCell.Name</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>List of products is empty</p>
+    }
+</div>

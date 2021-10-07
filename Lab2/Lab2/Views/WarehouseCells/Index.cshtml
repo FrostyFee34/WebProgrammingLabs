@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Lab2.Models.WarehouseCell>
+
+@{
+    ViewBag.Title = "Cells";
+}
+
+
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-dark">Cells</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="WarehouseCells" asp-action="Create" class="btn font-weight-bold text-white bg-dark">
+                Add cell
+            </a>
+        </div>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-bordered table-striped" style="width: 100%">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                    <tr>
+                        <td>@obj.Name</td>
+                        <td>@obj.Category</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>List of cells is empty</p>
+    }
+</div>

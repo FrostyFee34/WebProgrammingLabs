@@ -1,0 +1,55 @@
+﻿@model Lab2.Models.WarehouseCell
+
+@{
+    ViewBag.Title = "Add cell";
+}
+
+<form method="post" asp-action="Create">
+    <div class="border rounded p-3 border-bold">
+
+
+
+        <div class="form-group row">
+            <h2 class="text-dark pl-3">Buy a ticket</h2>
+        </div>
+
+
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label class="text-dark font-weight-bold" asp-for="Name">Cell name</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Name" class="form-control shadow-dark" />
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label class="text-dark font-weight-bold" asp-for="Category">Category</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Category" class="form-control shadow-dark" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-8 offset-4 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-block bg-white text-dark border-dark w-100" value="Add" />
+                        </div>
+                        <div class="col shadow-dark ">
+                            <a asp-action="Index" class="btn btn-block bg-dark text-white  w-100">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</form>

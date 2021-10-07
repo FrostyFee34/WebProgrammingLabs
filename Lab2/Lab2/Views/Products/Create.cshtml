@@ -1,0 +1,75 @@
+﻿@model Product
+
+@{
+    ViewBag.Title = "Add product";
+}
+
+<form method="post" asp-action="Create">
+    <div class="border rounded p-3 border-bold">
+        
+        @{
+            var cells = ViewData["cells"] as IEnumerable<WarehouseCell>;
+        }
+
+        <div class="form-group row">
+            <h2 class="text-dark pl-3">Add a product</h2>
+        </div>
+
+
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label class="text-dark font-weight-bold" asp-for="Name">Product name</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Name" class="form-control shadow-dark"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label class="text-dark font-weight-bold" asp-for="Description">Description</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Description" class="form-control shadow-dark"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label class="text-dark font-weight-bold" asp-for="Price">Price</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Price" class="form-control shadow-dark"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label class="text-dark font-weight-bold" asp-for="WarehouseCellId">Cell name</label>
+                    </div>
+                    <div class="col-8">
+                        @Html.DropDownListFor(x => x.WarehouseCellId, new SelectList(cells, "Id", "Category"))
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-8 offset-4 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-block bg-white text-dark border-dark w-100" value="Add"/>
+                        </div>
+                        <div class="col shadow-dark ">
+                            <a asp-action="Index" class="btn btn-block bg-dark text-white  w-100">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</form>
