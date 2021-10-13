@@ -48,7 +48,7 @@
 
                 <div class="form-group row">
                     <div class="col-4">
-                        <label class="text-dark font-weight-bold" asp-for="WarehouseCellId">Cell name</label>
+                        <label class="text-dark font-weight-bold" asp-for="WarehouseCellId">Category</label>
                     </div>
                     <div class="col-8">
                         @Html.DropDownListFor(x => x.WarehouseCellId, new SelectList(cells, "Id", "Category"))
