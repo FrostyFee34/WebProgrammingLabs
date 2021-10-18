@@ -39,16 +39,37 @@ namespace Lab1.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-       
-        public IActionResult Delete(int? id)
+        
+        public IActionResult Delete(int? railwayRouteId)
         {
-            var obj = _db.Routes.Find(id);
+            var obj = _db.Routes.Find(railwayRouteId);
 
             if (obj == null) return RedirectToAction("Index");
 
             _db.Routes.Remove(obj);
             _db.SaveChanges();
 
+            return RedirectToAction("Index");
+        }
+
+        // GET - EDIT
+        public IActionResult Edit(int? railwayRouteId)
+        {
+            if (railwayRouteId == 0 || railwayRouteId == null) return NotFound();
+            var obj = _db.Routes.Find(railwayRouteId);
+            if (obj == null) return NotFound();
+
+            return View(obj);
+        }
+
+
+        // POST - EDIT
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(RailwayRoute obj)
+        {
+            _db.Routes.Update(obj);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
     }

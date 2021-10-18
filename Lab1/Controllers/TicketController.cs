@@ -38,5 +38,18 @@ namespace Lab1.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public IActionResult Delete(int? ticketId)
+        {
+            var obj = _db.Tickets.Find(ticketId);
+
+            if (obj == null) return RedirectToAction("Index");
+
+            _db.Tickets.Remove(obj);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

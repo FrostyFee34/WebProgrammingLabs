@@ -9,9 +9,10 @@
         <table class="table table-bordered table-striped" style="width: 100%">
             <thead>
                 <tr>
-                    <th scope="col">Passenger name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Route name</th>
+                    <th scope="col" class="col-4">Passenger name</th>
+                    <th scope="col" class="col-4">Route name</th>
+                    <th scope="col" class="col-3">Price</th>
+                    <th scope="col" class="col-3">Remove a ticket</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,8 +20,11 @@
             {
                 <tr>
                     <td>@obj.PassengerFullName</td>
-                    <td>@obj.Price</td>
                     <td>@obj.Route.Name</td>
+                    <td>@obj.Price</td>
+                    <td class="p-1">
+                        <a class="btn btn-danger text-light w-100" asp-controller="Ticket" asp-action="Delete" asp-route-TicketId="@obj.Id">Delete</a>
+                    </td>
                 </tr>
             }
             </tbody>
