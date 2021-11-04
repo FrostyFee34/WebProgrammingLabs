@@ -22,10 +22,11 @@ namespace Lab1.Controllers
         }
 
         // GET - CREATE
-        public async Task<IActionResult> Create(int railwayRouteId)
+        public async Task<IActionResult> Create(int? railwayRouteId)
         {
+            if (railwayRouteId == null) return RedirectToAction("Index");
             var route = await _db.Routes.FindAsync(railwayRouteId);
-            var ticket = new Ticket {RailwayRouteId = railwayRouteId, Route = route};
+            var ticket = new Ticket {RailwayRouteId = (int) railwayRouteId, Route = route};
             return View(ticket);
         }
 
@@ -34,6 +35,7 @@ namespace Lab1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Ticket obj)
         {
+            if (obj == null) return RedirectToAction("Index");
             _db.Tickets.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
@@ -50,6 +52,5 @@ namespace Lab1.Controllers
 
             return RedirectToAction("Index");
         }
-
     }
 }

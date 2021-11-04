@@ -1,11 +1,6 @@
-﻿using Lab1.Models;
+﻿using System.Collections.Generic;
+using Lab1.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Lab1.Controllers
 {
@@ -16,7 +11,7 @@ namespace Lab1.Controllers
 
         public RouteController(RailwayContext db)
         {
-           _db = db;
+            _db = db;
         }
 
         public IActionResult Index()
@@ -24,6 +19,7 @@ namespace Lab1.Controllers
             IEnumerable<RailwayRoute> routes = _db.Routes;
             return View(routes);
         }
+
         // GET - CREATE
         public IActionResult Create()
         {
@@ -35,11 +31,12 @@ namespace Lab1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(RailwayRoute obj)
         {
+            if (obj == null) RedirectToAction("Index");
             _db.Routes.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-        
+
         public IActionResult Delete(int? railwayRouteId)
         {
             var obj = _db.Routes.Find(railwayRouteId);
@@ -68,6 +65,7 @@ namespace Lab1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(RailwayRoute obj)
         {
+            if (obj == null) return RedirectToAction("Index");
             _db.Routes.Update(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");

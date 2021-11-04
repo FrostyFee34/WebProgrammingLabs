@@ -12,7 +12,5 @@ namespace Lab1
 
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<RailwayRoute> Routes { get; set; }
-
-
     }
 }
