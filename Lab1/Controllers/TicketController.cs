@@ -35,7 +35,7 @@ namespace Lab1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Ticket obj)
         {
-            if (obj == null) return RedirectToAction("Index");
+            if (obj == null || !ModelState.IsValid) return RedirectToAction("Index");
             _db.Tickets.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");

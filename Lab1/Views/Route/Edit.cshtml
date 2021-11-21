@@ -1,9 +1,9 @@
-﻿@model RailwayRoute
+﻿@model Lab1.Models.RailwayRoute
 
 <form method="post" asp-action="Edit">
     <div class="border rounded border-bold p-3">
 
-        <input asp-for="Id" hidden/>
+        <input asp-for="Id" hidden />
 
         <div class="form-group row">
             <h2 class="text-dark pl-3">Edit railway route</h2>
@@ -13,47 +13,52 @@
             <div class="col-8">
                 <div class="form-group row">
                     <div class="col-4">
-                        <label class="text-dark font-weight-bold" asp-for="Name">Name</label>
+                        <label class="text-dark font-weight-bold" asp-for="Name"></label>
                     </div>
                     <div class="col-8">
                         <input asp-for="Name" class="form-control shadow-dark" />
+                        <span asp-validation-for="Name" class="text-uppercase text-danger"></span>
                     </div>
 
                 </div>
 
                 <div class="form-group row">
                     <div class="col-4">
-                        <label class="text-dark font-weight-bold" asp-for="DepartureTime">Departure time</label>
+                        <label class="text-dark font-weight-bold" asp-for="DepartureTime"></label>
                     </div>
                     <div class="col-8">
                         <input asp-for="DepartureTime" class="form-control shadow-dark" />
+                        <span asp-validation-for="DepartureTime" class="text-uppercase text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-4">
-                        <label class="text-dark font-weight-bold" asp-for="ArrivalTime">Arrival time</label>
+                        <label class="text-dark font-weight-bold" asp-for="ArrivalTime"></label>
                     </div>
                     <div class="col-8">
                         <input asp-for="ArrivalTime" class="form-control shadow-dark" />
+                        <span asp-validation-for="ArrivalTime" class="text-uppercase text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-4">
-                        <label class="text-dark font-weight-bold" asp-for="DepartureCity">Departure city</label>
+                        <label class="text-dark font-weight-bold" asp-for="DepartureCity"></label>
                     </div>
                     <div class="col-8">
                         <input asp-for="DepartureCity" class="form-control shadow-dark" />
+                        <span asp-validation-for="DepartureCity" class="text-uppercase text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-4">
-                        <label class="text-dark font-weight-bold" asp-for="ArrivalCity">Arrival city</label>
+                        <label class="text-dark font-weight-bold" asp-for="ArrivalCity"></label>
                     </div>
                     <div class="col-8">
                         <input asp-for="ArrivalCity" class="form-control shadow-dark" />
+                        <span asp-validation-for="ArrivalCity" class="text-uppercase text-danger"></span>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -67,8 +72,13 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 </form>
+
+@section Scripts
+{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

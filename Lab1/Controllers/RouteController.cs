@@ -31,7 +31,7 @@ namespace Lab1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(RailwayRoute obj)
         {
-            if (obj == null) RedirectToAction("Index");
+            if (obj == null || !ModelState.IsValid) RedirectToAction("Index");
             _db.Routes.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
@@ -65,7 +65,8 @@ namespace Lab1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(RailwayRoute obj)
         {
-            if (obj == null) return RedirectToAction("Index");
+
+            if (obj == null || !ModelState.IsValid) return RedirectToAction("Index");
             _db.Routes.Update(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
