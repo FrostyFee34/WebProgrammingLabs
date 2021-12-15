@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lab1
@@ -27,6 +28,12 @@ namespace Lab1
             services.AddControllersWithViews();
             services.AddDbContext<RailwayContext>(x =>
                 x.UseSqlite(_config.GetConnectionString("DefaultConnection")));
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => //CookieAuthenticationOptions
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Accounts/Login");
+                });
 
         }
 
@@ -48,7 +55,8 @@ namespace Lab1
             
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();   
+            app.UseAuthorization();    
 
             app.UseEndpoints(endpoints =>
             {

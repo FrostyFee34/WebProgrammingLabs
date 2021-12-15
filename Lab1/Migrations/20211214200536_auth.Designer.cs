@@ -3,14 +3,16 @@ using System;
 using Lab1;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Lab1.Migrations
 {
     [DbContext(typeof(RailwayContext))]
-    partial class RailwayContextModelSnapshot : ModelSnapshot
+    [Migration("20211214200536_auth")]
+    partial class auth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

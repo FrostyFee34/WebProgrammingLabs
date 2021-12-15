@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using Lab1.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lab1.Controllers
 {
+     [Authorize]
     public class RouteController : Controller
     {
         private readonly RailwayContext _db;

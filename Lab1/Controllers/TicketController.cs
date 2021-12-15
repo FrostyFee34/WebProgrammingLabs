@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Lab1.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lab1.Controllers
 {
+    [Authorize]
     public class TicketController : Controller
     {
         private readonly RailwayContext _db;
@@ -24,6 +27,7 @@ namespace Lab1.Controllers
         // GET - CREATE
         public async Task<IActionResult> Create(int? railwayRouteId)
         {
+            var user = HttpContext.User;
             if (railwayRouteId == null) return RedirectToAction("Index");
             var route = await _db.Routes.FindAsync(railwayRouteId);
             var ticket = new Ticket {RailwayRouteId = (int) railwayRouteId, Route = route};
@@ -35,6 +39,7 @@ namespace Lab1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Ticket obj)
         {
+            var user = HttpContext.User;
             if (obj == null || !ModelState.IsValid) return RedirectToAction("Index");
             _db.Tickets.Add(obj);
             _db.SaveChanges();
